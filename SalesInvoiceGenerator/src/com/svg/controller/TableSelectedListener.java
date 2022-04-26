@@ -27,18 +27,20 @@ public class TableSelectedListener implements ListSelectionListener {
 
     @Override
     public void valueChanged(ListSelectionEvent lse) {
-       // new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    
      int invSelectedInvIndes = frame.getInvHTbl().getSelectedRow();
        
-       System.out.println("Invoice Selected" + frame.getInvHTbl().getSelectedRow());
+       System.out.println("Invoice Selected: " + invSelectedInvIndes);
+       if(invSelectedInvIndes != 1){
        InvoiceHeader selectedInvoice= frame.getInvoicesArray().get(invSelectedInvIndes);
        ArrayList<InvoiceLine> lines = selectedInvoice.getLines();
        InvoiceLine_TblModel lineTableModel = new InvoiceLine_TblModel(lines);
+       frame.setLinesArray(lines);
        frame.getInvLTbl().setModel(lineTableModel);
        frame.getCustNameLbl().setText(selectedInvoice.getCustomer());
        frame.getInvNumLbl().setText(""+ selectedInvoice.getNum());
        frame.getInvTotalLbl().setText(""+ selectedInvoice.getInvoiceTotal());
-       frame.getInvDateLbl().setText(InvoiceFrame.dateFormat.format(selectedInvoice.getInvDate()));
+       frame.getInvDateLbl().setText(InvoiceFrame.dateFormat.format(selectedInvoice.getInvDate()));}
        
        
        

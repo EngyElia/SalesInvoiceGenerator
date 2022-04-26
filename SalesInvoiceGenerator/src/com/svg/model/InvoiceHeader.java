@@ -9,6 +9,8 @@ package com.svg.model;
  *
  * @author acer
  */
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.Date;
  import java.util.ArrayList;
 
@@ -18,6 +20,7 @@ public class InvoiceHeader {
     private String customer;
     private Date invDate;
     private ArrayList<InvoiceLine> lines;
+    private DateFormat dTFormat = new SimpleDateFormat("dd-MM-yyyy");
     
     
 
@@ -67,8 +70,8 @@ public class InvoiceHeader {
      public double getInvoiceTotal()
      {
          double total =0.0;
-         for(int i=0; i< lines.size();i++){
-             total += lines.get(i).getLineTotal();
+         for(int i=0; i< getLines().size();i++){
+             total += getLines().get(i).getLineTotal();
              
          }
          return total;
@@ -77,7 +80,7 @@ public class InvoiceHeader {
 
     @Override
     public String toString() {
-        return "InvoiceHeader{" + "num=" + num + ", customer=" + customer + ", invDate=" + invDate + '}';
+        return num + "," + dTFormat.format(invDate) + "," + customer;
     }
     
     

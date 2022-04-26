@@ -28,7 +28,7 @@ public class InvoiceLine_TblModel extends AbstractTableModel {
     public int getRowCount() {
         //throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
    
-    return lineArray.size();
+    return  lineArray == null ? 0 : lineArray.size();
     }
 
     @Override
@@ -41,13 +41,16 @@ public class InvoiceLine_TblModel extends AbstractTableModel {
     @Override
     public Object getValueAt(int rI, int cI) {
         // throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-        InvoiceLine line = lineArray.get(rI);
+        if(lineArray == null)
+        {return "";}
+        
+        else{ InvoiceLine line = lineArray.get(rI);
         switch(cI){
             case 0: return line.getItem();
             case 1: return line.getPrice();
             case 2: return line.getCount();
             case 3: return line.getLineTotal();
-            default:  return "";
+            default:  return "";}
         }
     
     }

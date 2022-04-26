@@ -9,6 +9,7 @@ import com.svg.controller.Invoice_ActionListeners;
 import com.svg.controller.TableSelectedListener;
 import com.svg.model.InvoiceHeader;
 import com.svg.model.InvoiceHeader_TblModel;
+import com.svg.model.InvoiceLine;
 import java.awt.Label;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -84,6 +85,11 @@ public class InvoiceFrame extends javax.swing.JFrame {
 
         deleteInvoiceButton.setText("Delete Invoice ");
         deleteInvoiceButton.addActionListener(actionListeners);
+        deleteInvoiceButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                deleteInvoiceButtonActionPerformed(evt);
+            }
+        });
 
         label1.setText("Invoice Num");
 
@@ -142,15 +148,6 @@ public class InvoiceFrame extends javax.swing.JFrame {
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(createInvoiceButton)
-                        .addGap(18, 18, 18)
-                        .addComponent(deleteInvoiceButton)
-                        .addGap(65, 65, 65)
-                        .addComponent(createLineButton)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(deleteLineButton)
-                        .addGap(74, 74, 74))
-                    .addGroup(layout.createSequentialGroup()
                         .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 289, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(51, 51, 51)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -183,7 +180,16 @@ public class InvoiceFrame extends javax.swing.JFrame {
                                 .addContainerGap(127, Short.MAX_VALUE))
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
-                                .addGap(34, 34, 34))))))
+                                .addGap(34, 34, 34))))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(createInvoiceButton)
+                        .addGap(18, 18, 18)
+                        .addComponent(deleteInvoiceButton)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(createLineButton)
+                        .addGap(95, 95, 95)
+                        .addComponent(deleteLineButton)
+                        .addGap(113, 113, 113))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -235,6 +241,10 @@ public class InvoiceFrame extends javax.swing.JFrame {
     private void loadMenuItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_loadMenuItemActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_loadMenuItemActionPerformed
+
+    private void deleteInvoiceButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_deleteInvoiceButtonActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_deleteInvoiceButtonActionPerformed
 
     /**
      * @param args the command line arguments
@@ -298,9 +308,11 @@ public class InvoiceFrame extends javax.swing.JFrame {
  
 private  Invoice_ActionListeners actionListeners = new Invoice_ActionListeners(this);
 private ArrayList<InvoiceHeader> invoicesArray ;
+private ArrayList<InvoiceLine> LinesArray;
 private InvoiceHeader_TblModel headerTbModel;
 public static SimpleDateFormat dateFormat = new SimpleDateFormat("dd-MM-yyyy");
 private TableSelectedListener selectedListener= new TableSelectedListener(this);
+
 
     public ArrayList<InvoiceHeader> getInvoicesArray() {
         return invoicesArray;
@@ -349,8 +361,18 @@ private TableSelectedListener selectedListener= new TableSelectedListener(this);
     public Label getInvTotalLbl() {
         return invTotalLbl;
     }
-    
-    
+
+    public Invoice_ActionListeners getActionListeners() {
+        return actionListeners;
+    }
+
+    public ArrayList<InvoiceLine> getLinesArray() {
+        return LinesArray;
+    }
+
+    public void setLinesArray(ArrayList<InvoiceLine> LinesArray) {
+        this.LinesArray = LinesArray;
+    }
     
 
 }
